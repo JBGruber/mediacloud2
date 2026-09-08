@@ -101,22 +101,18 @@ mc_error_body <- function(resp) {
   if (is.null(msg)) {
     return(NULL)
   }
-  msg <- paste(as.character(msg), collapse = " ")
-  info <- c("x" = msg)
-  if (httr2::resp_status(resp) == 403L) {
-    info <- c(
-      info,
-      "i" = "Check your token with {.run mediacloud2::mc_profile()}."
-    )
+  # plain text, no cli markup: httr2 passes these lines through as they are,
+  # so anything like {.run ...} would reach the user unrendered
+  info <- paste(as.character(msg), collapse = " ")
+  status <- httr2::resp_status(resp)
+  if (status == 403L) {
+    info <- c(info, "Check that your token is valid with `mc_profile()`.")
   }
-  if (httr2::resp_status(resp) == 429L) {
-    info <- c(
-      info,
-      "i" = paste(
-        "The API allows 2 search requests per minute.",
-        "Set {.code options(mediacloud.rate = )} if your key is allowed more."
-      )
-    )
+  if (status == 429L) {
+    info <- c(info, paste(
+      "The API allows 2 search requests per minute;",
+      "set `options(mediacloud.rate = )` if your key is allowed more."
+    ))
   }
   info
 }

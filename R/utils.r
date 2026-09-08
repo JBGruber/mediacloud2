@@ -150,7 +150,10 @@ fmt_ids <- function(x) {
 }
 
 
-# attach the raw response so users can escape the tibble when they need to
+# Attach the raw response so users can escape the tibble when they need to.
+# Only the single-request functions carry one: a paged result is assembled from
+# many responses, and attaching just the last would invite people to trust it
+# as "the" response for the whole call.
 with_raw <- function(x, raw) {
   attr(x, "response") <- raw
   x

@@ -25,8 +25,13 @@ The goal of mediacloud2 is to ...
 You can install the development version of mediacloud2 like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+pak::pak("https://github.com/JBGruber/mediacloud2")
 ```
+
+## Authentication
+
+To use the MediaCloud API, you first need to obtain a token.
+
 
 ## Example
 
