@@ -1,0 +1,14 @@
+Package: mediacloud2
+Title: MediaCloud API (v4) Wrapper
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Johannes B.",
+           family = "Gruber",
+           email = "JohannesB.Gruber@gmail.com", 
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-9177-1772"))
+Description: A simple API wrapper for the 'MediaCloud' API (v4). <https://www.mediacloud.org>
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 8.1.0
