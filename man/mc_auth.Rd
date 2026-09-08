@@ -48,7 +48,7 @@ list.files(tools::R_user_dir("mediacloud2", "cache"))
 # functions that interact with the API also take a .token argument with the
 # path. For example:
 tok_path <- file.path(tools::R_user_dir("mediacloud2", "cache"), "identity-2.rds")
-mc_collection_sources("Germany", .token = tok_path)
+mc_collection_sources(34412409, .token = tok_path)
 }
 
 }

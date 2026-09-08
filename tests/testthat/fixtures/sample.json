@@ -1,0 +1,34 @@
+{
+ "sample": [
+  {
+   "id": "063f773d59ad3f7237d320eb7168c427c8e728696c2751e70e8981fbe7786133",
+   "indexed_date": "2026-08-05 04:31:23.815362+00:00",
+   "language": "hr",
+   "media_name": "dw.com",
+   "media_url": "dw.com",
+   "publish_date": "2026-08-04",
+   "title": "Kakav klima-ure\u0111aj uop\u0107e kupiti?",
+   "url": "https://www.dw.com/hr/kakav-klima-ure%C4%91aj-uop%C4%87e-kupiti/a-78227084?maca=kro-rss-cro-all-1479-rdf"
+  },
+  {
+   "id": "5124778f636c17ffe0283feff9de4c810f224d95dc5d947c40332009a09bb99a",
+   "indexed_date": "2026-08-04 12:23:27.092047+00:00",
+   "language": "hr",
+   "media_name": "dw.com",
+   "media_url": "dw.com",
+   "publish_date": "2026-08-04",
+   "title": "Vru\u0107ine u stanu: Koji klima-ure\u0111aj je najbolji izbor?",
+   "url": "https://www.dw.com/sr/vru%C4%87ine-u-stanu-koji-klima-ure%C4%91aj-je-najbolji-izbor/a-78227219?maca=ser-serbian_all-2277-rdf"
+  },
+  {
+   "id": "dba310b749586ad623c57803b572c9fb36de54756101abfb8009e03bb419af60",
+   "indexed_date": "2026-08-07 18:54:23.599317+00:00",
+   "language": "de",
+   "media_name": "focus.de",
+   "media_url": "focus.de",
+   "publish_date": "2026-08-07",
+   "title": "Kreuzfahrten im Klima-Check: Aida und Mein Schiff landen hinter Hurtigruten und Havila",
+   "url": "https://www.focus.de/earth/kreuzfahrten-im-klima-check-aida-und-mein-schiff-landen-hinter-hurtigruten-und-havila_9feb02ee-baa7-4f6a-8b16-c13582792089.html"
+  }
+ ]
+}

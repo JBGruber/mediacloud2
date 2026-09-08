@@ -1,0 +1,28 @@
+{
+ "source-interval-attention": [
+  {
+   "media_name": "spiegel.de",
+   "interval": "week",
+   "bucket": "2026-08-01",
+   "matching_stories": 5,
+   "total_stories": 693,
+   "ratio": 0.007215007215007215
+  },
+  {
+   "media_name": "jungle.world",
+   "interval": "week",
+   "bucket": "2026-08-01",
+   "matching_stories": 1,
+   "total_stories": 18,
+   "ratio": 0.05555555555555555
+  },
+  {
+   "media_name": "nachrichten.de",
+   "interval": "week",
+   "bucket": "2026-08-01",
+   "matching_stories": 0,
+   "total_stories": 0,
+   "ratio": 0
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "stories": [
+  {
+   "id": "08d031bd4ea551fbbcaea905e68ccd32b90cdaf3a386174f9e27b151781d61c1",
+   "indexed_date": "2026-08-31 10:22:32.862178+00:00",
+   "language": "de",
+   "media_name": "cicero.de",
+   "media_url": "cicero.de",
+   "publish_date": "2026-08-04",
+   "title": "Serie: Kampagnenanalyse Sachsen-Anhalt",
+   "url": "https://www.cicero.de/innenpolitik/serie-kampagnenanalyse-sachsen-anhalt-teil-4-sonstige"
+  },
+  {
+   "id": "f65151ff02a9a9f51b41096884c76a7a73c9b94e4af7cf0c2c5de3678c36bf46",
+   "indexed_date": "2026-08-28 00:35:26.439175+00:00",
+   "language": "de",
+   "media_name": "cicero.de",
+   "media_url": "cicero.de",
+   "publish_date": "2026-08-04",
+   "title": "Serie: Kampagnenanalyse Sachsen-Anhalt",
+   "url": "https://www.cicero.de/innenpolitik/serie-kampagnenanalyse-sachsen-anhalt-teil-2-afd"
+  },
+  {
+   "id": "e26886d2eb1287a9a6dcd83b9f9de118af4117bf40e156f7a46d0452c78001a3",
+   "indexed_date": "2026-08-24 17:41:52.195733+00:00",
+   "language": "de",
+   "media_name": "cicero.de",
+   "media_url": "cicero.de",
+   "publish_date": "2026-08-04",
+   "title": "Berater in eigener Sache",
+   "url": "https://www.cicero.de/innenpolitik/berater-in-eigener-sache-handlanger-der-politik"
+  }
+ ],
+ "pagination_token": null
+}

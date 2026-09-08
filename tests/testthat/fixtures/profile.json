@@ -1,0 +1,15 @@
+{
+ "id": 1234,
+ "username": "example_user",
+ "is_staff": false,
+ "is_superuser": false,
+ "groups": [
+  "api_access"
+ ],
+ "quota": {
+  "provider": "onlinenews-mediacloud",
+  "hits": 42,
+  "week": "2026-09-07",
+  "limit": 4000
+ }
+}

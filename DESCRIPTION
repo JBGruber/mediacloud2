@@ -12,10 +12,14 @@ Imports:
     cli,
     httr2,
     rlang,
+    stats,
+    tibble,
     tools,
-    utils
+    utils,
+    vctrs
 Suggests: 
     askpass,
+    jsonlite,
     knitr,
     testthat (>= 3.3.0),
     withr

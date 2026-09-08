@@ -38,7 +38,7 @@
 #' # functions that interact with the API also take a .token argument with the
 #' # path. For example:
 #' tok_path <- file.path(tools::R_user_dir("mediacloud2", "cache"), "identity-2.rds")
-#' mc_collection_sources("Germany", .token = tok_path)
+#' mc_collection_sources(34412409, .token = tok_path)
 #' }
 #'
 #' @export
@@ -84,11 +84,11 @@ save_token <- function(token, overwrite = FALSE) {
 }
 
 
-req_token <- function(req) {
+req_token <- function(req, .token = NULL) {
   if (!inherits(req, "httr2_request")) {
     cli::cli_abort("{.code req} must be a httr2 request")
   }
-  token <- get_token()
+  token <- get_token(.token = .token)
   if (is.null(token)) {
     cli::cli_abort(c(
       "No 'MediaCloud' token found.",
@@ -99,7 +99,21 @@ req_token <- function(req) {
 }
 
 
-get_token <- function() {
+#' @param .token a token, or the path to a saved token file, to use instead of
+#'   the stored one. Lets a script switch between identities without touching
+#'   the `MC_TOKEN` environment variable.
+#' @noRd
+get_token <- function(.token = NULL) {
+  if (!is.null(.token)) {
+    if (!rlang::is_string(.token)) {
+      cli::cli_abort("{.arg .token} must be a single string.")
+    }
+    if (file.exists(.token)) {
+      return(invisible(read_token(.token)))
+    }
+    return(invisible(.token))
+  }
+
   f <- token_path()
 
   if (rlang::env_has(the, nms = "MC_TOKEN")) {

@@ -1,0 +1,16 @@
+{
+ "languages": [
+  {
+   "language": "de",
+   "value": 268,
+   "ratio": 0.9605734767025089,
+   "sample_size": 279
+  },
+  {
+   "language": "hr",
+   "value": 11,
+   "ratio": 0.03942652329749104,
+   "sample_size": 279
+  }
+ ]
+}

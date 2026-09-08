@@ -1,0 +1,52 @@
+{
+ "count": 5,
+ "next": null,
+ "previous": null,
+ "results": [
+  {
+   "id": 2463525,
+   "url": "https://www.cbsnews.com/newyork/xml-sitemap/news.xml",
+   "admin_rss_enabled": true,
+   "source": 1752,
+   "name": null,
+   "created_at": "2024-08-28T21:42:06.338500Z",
+   "modified_at": "2024-08-28T21:42:06.338644Z"
+  },
+  {
+   "id": 2463526,
+   "url": "https://www.cbsnews.com/detroit/xml-sitemap/news.xml",
+   "admin_rss_enabled": true,
+   "source": 1752,
+   "name": null,
+   "created_at": "2024-08-28T21:42:06.343635Z",
+   "modified_at": "2024-08-28T21:42:06.343657Z"
+  },
+  {
+   "id": 2463527,
+   "url": "https://www.cbsnews.com/boston/xml-sitemap/news.xml",
+   "admin_rss_enabled": true,
+   "source": 1752,
+   "name": null,
+   "created_at": "2024-08-28T21:42:06.345878Z",
+   "modified_at": "2024-08-28T21:42:06.345927Z"
+  },
+  {
+   "id": 2463528,
+   "url": "https://www.cbsnews.com/colorado/xml-sitemap/news.xml",
+   "admin_rss_enabled": true,
+   "source": 1752,
+   "name": null,
+   "created_at": "2024-08-28T21:42:06.347392Z",
+   "modified_at": "2024-08-28T21:42:06.347410Z"
+  },
+  {
+   "id": 2463529,
+   "url": "https://www.cbsnews.com/gooddaysacramento/xml-sitemap/news.xml",
+   "admin_rss_enabled": true,
+   "source": 1752,
+   "name": null,
+   "created_at": "2024-08-28T21:42:06.348714Z",
+   "modified_at": "2024-08-28T21:42:06.348731Z"
+  }
+ ]
+}

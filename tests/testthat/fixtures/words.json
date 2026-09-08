@@ -1,0 +1,28 @@
+{
+ "words": [
+  {
+   "term": "hitze",
+   "term_count": 23,
+   "term_ratio": 0.0824,
+   "doc_count": 22,
+   "doc_ratio": 0.0789,
+   "sample_size": 279
+  },
+  {
+   "term": "deutschland",
+   "term_count": 17,
+   "term_ratio": 0.0609,
+   "doc_count": 17,
+   "doc_ratio": 0.0609,
+   "sample_size": 279
+  },
+  {
+   "term": "klimawandel",
+   "term_count": 15,
+   "term_ratio": 0.0538,
+   "doc_count": 15,
+   "doc_ratio": 0.0538,
+   "sample_size": 279
+  }
+ ]
+}
