@@ -67,6 +67,7 @@ mc_auth <- function(
   }
   save_token(token = token, overwrite = overwrite || new_token)
   rlang::env_poke(env = the, nm = "MC_TOKEN", value = token, create = TRUE)
+  cli::cli_alert_success("succesfully authenticated!")
   invisible(token)
 }
 
