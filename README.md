@@ -5,6 +5,9 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/JBGruber/mediacloud2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JBGruber/mediacloud2/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/JBGruber/mediacloud2/graph/badge.svg)](https://app.codecov.io/gh/JBGruber/mediacloud2)
 <!-- badges: end -->
 
 The goal of mediacloud2 is to make the [Media
