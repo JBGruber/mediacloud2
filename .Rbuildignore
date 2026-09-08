@@ -1,3 +1,7 @@
 ^mediacloud2\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^dev$
+^lab.r$
+^plan.md$
+^README\.Rmd$
