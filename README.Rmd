@@ -11,6 +11,9 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+# the search endpoints are throttled to two requests per minute, which httr2
+# reports with a progress bar that has no business in a rendered README
+options(cli.progress_show_after = Inf)
 ```
 
 # mediacloud2 <img src="man/figures/logo.svg" align="right" height="139" alt="" />
@@ -18,7 +21,11 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of mediacloud2 is to ...
+The goal of mediacloud2 is to make the [Media Cloud](https://www.mediacloud.org) news archive usable from R.
+Media Cloud collects online news from tens of thousands of outlets worldwide and lets you search that archive by keyword, outlet, country and date.
+The package wraps version 4 of the Media Cloud API, which replaced the retired v2 API that older R clients were written against.
+
+Everything the package returns is a tibble, so results go straight into your usual data wrangling and plotting code.
 
 ## Installation
 
@@ -28,32 +35,133 @@ You can install the development version of mediacloud2 like so:
 pak::pak("https://github.com/JBGruber/mediacloud2")
 ```
 
+# Basic Usage
+
+```{r}
+library(mediacloud2)
+```
+
 ## Authentication
 
 To use the MediaCloud API, you first need to obtain a token.
+Head to <https://search.mediacloud.org/account> and create an account, if you do not have one already, then create a token.
+Or you skip that step and run `mc_auth()` directly:
 
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-library(mediacloud2)
-## basic example code
+```
+mc_auth()
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+This will open the URL you need and ask you to enter the token.
+This way, the token doesn't show up in your R history or anywhere else.
+After you have done this once, the package will never ask you again to authenticate, unless you change computers or delete the cache directory.
+You can learn more about the function with `?mc_auth()`.
 
-```{r cars}
-summary(cars)
+## Finding Sources
+
+Media Cloud sorts the outlets it archives into *sources* -- one per domain -- and *collections*, which are named groups of sources, mostly countries and regions.
+Every search runs against at least one of the two, so this is where you normally start.
+
+To find an individual source, search for its name:
+
+```{r}
+spiegel <- mc_sources(name = "spiegel")
+spiegel[, c("id", "name", "stories_per_week", "primary_language")]
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+Searching for a country instead gives you the collections it is covered by:
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r}
+mc_find_collections("Germany")
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+`"Germany - National"` is the one you usually want.
+Its id, `34412409`, is what the search functions below take, but you can also ask for the sources it contains:
+
+```{r}
+sources_de <- mc_collection_sources("Germany - National")
+sources_de[, c("id", "name", "stories_per_week", "last_story")]
+```
+
+## Getting News Items
+
+`mc_story_list()` returns the stories matching a query.
+The query goes to Elasticsearch, so the usual `AND`/`OR`/`NOT` operators, quoted phrases and wildcards all work.
+Search terms are always paired with a date range and with at least one collection or source:
+
+```{r}
+stories <- mc_story_list(
+  "bluesky",
+  start_date = "2026-01-01",
+  end_date = "2026-09-01",
+  collection_id = 34412409
+)
+stories
+```
+
+Paging is handled for you: the function keeps asking for the next page until the archive is exhausted, or until `max_results` is reached.
+Media Cloud allows ordinary accounts two search requests per minute, and the package waits rather than running into that limit, so a broad query takes a while.
+
+If you only want the shape of the coverage rather than the stories themselves, `mc_count_over_time()` answers in a single request:
+
+```{r bluesky-over-time, fig.height = 3.5, fig.width = 8, dpi = 150, fig.alt = "Bar chart of the number of stories per day in German national news that mention Bluesky, January to September 2026."}
+counts <- mc_count_over_time(
+  "bluesky",
+  start_date = "2026-01-01",
+  end_date = "2026-09-01",
+  collection_id = 34412409
+)
+counts
+
+library(ggplot2)
+ggplot(counts, aes(x = date, y = count)) +
+  geom_col(fill = "#2a5db0", width = 1) +
+  labs(
+    title = "German national news mentioning Bluesky",
+    x = NULL,
+    y = "Stories per day"
+  ) +
+  theme_minimal()
+```
+
+## Obtaining Tokens
+
+MediaCloud does not give you the raw text of a news item, but it lets you get the individual tokens or features of a story.
+That means you get all the words that were originally in a story, but not the order of the words.
+
+```{r}
+words <- mc_words(
+  "bluesky",
+  start_date = "2026-01-01",
+  end_date = "2026-09-01",
+  collection_id = 34412409
+)
+words
+```
+
+The counts come from a sample of the matching stories, not from all of them, which is why `sample_size` is reported alongside them.
+
+You can use these words, for example, to build a word cloud with `ggwordcloud`.
+
+```{r bluesky-wordcloud, fig.height = 5, fig.width = 8, dpi = 150, fig.alt = "Word cloud of the terms most common in German national news stories mentioning Bluesky, with linke, social, gruene, berlin and spd the largest."}
+library(ggwordcloud)
+ggplot(words, aes(label = term, size = term_count, colour = term_count)) +
+  geom_text_wordcloud(seed = 1, grid_margin = 4) +
+  scale_size_area(max_size = 14) +
+  scale_colour_gradient(low = "#7ba7e3", high = "#12305e") +
+  theme_minimal()
+```
+
+# Alternatives
+
+There have been other R packages in the past ([`mediacloudr`](https://github.com/jandix/mediacloudr) by jandix, [`joon-e/mediacloud`](https://github.com/joon-e/mediacloud)), however, they target the retired v2 API and are unusable against the current v4.
+So the only working alternative, as far as I can tell, is the [Python package by MediaCloud themselves](https://github.com/mediacloud/api-client).
+
+# How to cite
+
+**This R Package**:
+
+> Gruber, J. B. (2026). *mediacloud2: MediaCloud API (v4) Wrapper*. R package version 0.0.0.9000. <https://github.com/JBGruber/mediacloud2>
+
+**The API**:
+
+> Bermejo, F., Bhargava, R., Budne, P., Gulley, P., Leon, E., McGrady, R., … Zuckerman, E. (2026). Media Cloud 2.0: An Updated Open Web News Archive. Proceedings of the International AAAI Conference on Web and Social Media, 20(1), 2735–2746. https://doi.org/10.1609/icwsm.v20i1.42778
